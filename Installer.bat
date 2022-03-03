@@ -39,23 +39,18 @@ ECHO Set UAC = CreateObject^("Shell.Application"^) > "%temp%\OEgetPrivileges.vbs
 ECHO UAC.ShellExecute "cmd", "/c ""!batchPath! !batchArgs!""", "", "runas", 1 >> "%temp%\OEgetPrivileges.vbs"
 "%temp%\OEgetPrivileges.vbs" 
 exit /B
-
 :START
 ::Remove the elevation tag and set the correct working directory
 IF '%1'=='ELEV' ( shift /1 )
 cd /d %~dp0
-
 ::Do your adminy thing here...
-
-
 CD /d %~dp0
-
 CLS
 :MENU
 ECHO ch0ic3s' AIO runtime V1.1
 ECHO ...............................................
 echo changelog
-echo 1.2:patches issue #1
+echo 1.2:patches issue #1 #2,adds XNAframework 4.0
 echo 1.1:added menu to determin install options
 echo 1.0:initial release
 echo................................................
@@ -73,91 +68,54 @@ IF %M%==2 GOTO XNA
 IF %M%==3 GOTO VCR
 IF %M%==4 GOTO OAL
 IF %M%==5 GOTO END
-
 :all
 set IS_X64=0 && if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set IS_X64=1) else (if "%PROCESSOR_ARCHITEW6432%"=="AMD64" (set IS_X64=1))
-
 if "%IS_X64%" == "1" goto X64
-
-
 start /wait vcredist2005_x86.exe /q
-
 start /wait vcredist2008_x86.exe /qb
-
-
 start /wait vcredist2010_x86.exe /passive /norestart
-
-
 start /wait vcredist2012_x86.exe /passive /norestart
-
-
 start /wait vcredist2013_x86.exe /passive /norestart
-
 echo 2015, 2017 ^& 2019...
 start /wait vcredist2015_2017_2019_2022_x86.exe /passive /norestart
-
 goto END
-
 :X64
-
 start /wait vcredist2005_x86.exe /q
 start /wait vcredist2005_x64.exe /q
-
-
 start /wait vcredist2008_x86.exe /qb
 start /wait vcredist2008_x64.exe /qb
-
-
 start /wait vcredist2010_x86.exe /passive /norestart
 start /wait vcredist2010_x64.exe /passive /norestart
-
 start /wait vcredist2012_x86.exe /passive /norestart
 start /wait vcredist2012_x64.exe /passive /norestart
-
-
 start /wait vcredist2013_x86.exe /passive /norestart
 start /wait vcredist2013_x64.exe /passive /norestart
-
-
 start /wait vcredist2015_2017_2019_2022_x86.exe /passive /norestart
 start /wait vcredist2015_2017_2019_2022_x64.exe /passive /norestart
-
-
+start /wait XNA31.msi /passive /norestart
+start /wait XNA30.msi /passive /norestart
+start /wait XNA40.msi /passive /norestart
+start /wait oalinst.exe -s
 goto END
 
 :VCR
 set IS_X64=0 && if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set IS_X64=1) else (if "%PROCESSOR_ARCHITEW6432%"=="AMD64" (set IS_X64=1))
 
 if "%IS_X64%" == "1" goto X64
-
-
 start /wait vcredist2005_x86.exe /q
-
 start /wait vcredist2008_x86.exe /qb
-
-
 start /wait vcredist2010_x86.exe /passive /norestart
-
-
 start /wait vcredist2012_x86.exe /passive /norestart
-
-
 start /wait vcredist2013_x86.exe /passive /norestart
-
-echo 2015, 2017 ^& 2019...
 start /wait vcredist2015_2017_2019_2022_x86.exe /passive /norestart
-
 goto END
 :XNA
 start /wait XNA31.msi /passive /norestart
 start /wait XNA30.msi /passive /norestart
+start /wait XNA40.msi /passive /norestart
 goto END
 :OAL
 start /wait oalinst.exe -s
 goto end
 :END
-
-echo.
-echo Installation completed successfully
-
 exit
