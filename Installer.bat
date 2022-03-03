@@ -55,6 +55,7 @@ CLS
 ECHO ch0ic3s' AIO runtime V1.1
 ECHO ...............................................
 echo changelog
+echo 1.2:patches issue #1
 echo 1.1:added menu to determin install options
 echo 1.0:initial release
 echo................................................
