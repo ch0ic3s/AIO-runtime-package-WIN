@@ -121,9 +121,7 @@ start /wait vcredist2013_x64.exe /passive /norestart
 start /wait vcredist2015_2017_2019_2022_x86.exe /passive /norestart
 start /wait vcredist2015_2017_2019_2022_x64.exe /passive /norestart
 
-start /wait XNA31.msi /passive /norestart
-start /wait XNA30.msi /passive /norestart
-start /wait oalinst.exe -s
+
 goto END
 
 :VCR
