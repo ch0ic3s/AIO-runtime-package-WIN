@@ -47,6 +47,7 @@ cd /d %~dp0
 CD /d %~dp0
 CLS
 :MENU
+echo ...............................................
 ECHO ch0ic3s' AIO runtime V1.1
 ECHO ...............................................
 echo changelog
@@ -101,7 +102,7 @@ goto END
 :VCR
 set IS_X64=0 && if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set IS_X64=1) else (if "%PROCESSOR_ARCHITEW6432%"=="AMD64" (set IS_X64=1))
 
-if "%IS_X64%" == "1" goto X64
+if "%IS_X64%" == "1" goto 64b
 start /wait vcredist2005_x86.exe /q
 start /wait vcredist2008_x86.exe /qb
 start /wait vcredist2010_x86.exe /passive /norestart
@@ -117,5 +118,19 @@ goto END
 :OAL
 start /wait oalinst.exe -s
 goto end
+:64b
+start /wait vcredist2005_x86.exe /q
+start /wait vcredist2005_x64.exe /q
+start /wait vcredist2008_x86.exe /qb
+start /wait vcredist2008_x64.exe /qb
+start /wait vcredist2010_x86.exe /passive /norestart
+start /wait vcredist2010_x64.exe /passive /norestart
+start /wait vcredist2012_x86.exe /passive /norestart
+start /wait vcredist2012_x64.exe /passive /norestart
+start /wait vcredist2013_x86.exe /passive /norestart
+start /wait vcredist2013_x64.exe /passive /norestart
+start /wait vcredist2015_2017_2019_2022_x86.exe /passive /norestart
+start /wait vcredist2015_2017_2019_2022_x64.exe /passive /norestart
+goto END
 :END
 exit
