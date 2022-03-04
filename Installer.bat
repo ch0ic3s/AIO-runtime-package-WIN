@@ -1,4 +1,5 @@
 @echo off
+color 17
 setlocal EnableDelayedExpansion
 ::net file to test privileges, 1>NUL redirects output, 2>NUL redirects errors
 NET FILE 1>NUL 2>NUL
