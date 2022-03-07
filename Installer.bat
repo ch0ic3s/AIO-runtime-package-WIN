@@ -43,7 +43,7 @@ CD /d %~dp0
 CLS
 :MENU
 echo ...............................................
-ECHO ch0ic3s' AIO runtime V1.1
+ECHO ch0ic3s' AIO runtime V1.3
 ECHO ...............................................
 echo changelog
 echo 1.3:compacts code to minimize disc space
