@@ -60,30 +60,28 @@ CLS
 :MENU
 CLS
 color 17
-echo ...............................................
-ECHO ch0ic3s' AIO runtime V1.4
-ECHO ...............................................
-echo changelog
-echo 1.4:added OS checks
-echo 1.3:compacts code to minimize disc space
-echo 1.2:patches issue #1 #2,adds XNAframework 4.0
-echo 1.1:added menu to determine install options
-echo 1.0:initial release
-echo................................................
-ECHO PRESS 1,2,3,4 or 5 
-ECHO ...............................................
-ECHO 1 - Install VCRedist,XNAframework and OpenAL
-ECHO 2 - Install XNAframework
-ECHO 3 - Install VCRedist
-ECHO 4 - Install OpenAL
-echo 5 - Exit
+echo |----------------------------------------------------- |
+ECHO |ch0ic3s' AIO runtime V1.5                             |
+echo |----------------------------------------------------- |
+ECHO |PRESS 1,2,3,4,5,6 or 7                                |
+ECHO |----------------------------------------------------- |
+ECHO |1 - Install VCRedist,XNAframework,OpenAL and DirectX  |
+ECHO |2 - Install XNAframework                              |
+ECHO |3 - Install VCRedist                                  |
+ECHO |4 - Install OpenAL                                    |
+echo |5 - Install DirectX                                   |
+echo |6 - View changelog                                    |
+ech0 |7 - Exit                                              |
+echo |------------------------------------------------------|
 ECHO.
 SET /P M=Type 1, 2, 3, 4 or 5 then press ENTER:
-IF %M%==1 GOTO all ELSE goto menu
-IF %M%==2 GOTO XNA ELSE goto menu
-IF %M%==3 GOTO VCR ELSE goto menu
-IF %M%==4 GOTO OAL ELSE goto menu
-IF %M%==5 GOTO END ELSE goto menu
+IF %M%==1 GOTO all 
+IF %M%==2 GOTO XNA 
+IF %M%==3 GOTO VCR 
+IF %M%==4 GOTO OAL 
+IF %M%==5 GOTO WEB
+IF %M%==6 goto changelog
+IF %M%==7 goto exit
 :all
 set IS_X64=0 && if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set IS_X64=1) else (if "%PROCESSOR_ARCHITEW6432%"=="AMD64" (set IS_X64=1))
 if "%IS_X64%" == "1" goto X64
@@ -151,3 +149,14 @@ exit
 :error
 ECHO error:device not compatible
 wait 10 /nobreak
+:changelog
+echo 1.5:added DirectX
+echo 1.4:added OS checks
+echo 1.3:compacts code to minimize disc space
+echo 1.2:patches issue #1 #2,adds XNAframework 4.0
+echo 1.1:added menu to determine install options
+echo 1.0:initial release
+timeout 30
+goto :testedwin
+:WEB
+start /wait webinst.exe
