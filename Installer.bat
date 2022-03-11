@@ -60,19 +60,19 @@ CLS
 :MENU
 CLS
 color 17
-echo ########################################################
-ECHO # ch0ic3s' AIO runtime V1.5                            #
-echo ########################################################
-ECHO # PRESS 1,2,3,4,5,6 or 7                               #
-ECHO ########################################################
-ECHO # 1 - Install VCRedist,XNAframework,OpenAL and DirectX #
-ECHO # 2 - Install XNAframework                             #
-ECHO # 3 - Install VCRedist                                 #
-ECHO # 4 - Install OpenAL                                   #
-echo # 5 - Install DirectX                                  #
-echo # 6 - View changelog                                   #
-ech0 # 7 - Exit                                             #
-echo ########################################################
+echo ________________________________________________________
+ECHO  ch0ic3s' AIO runtime V1.5
+echo ________________________________________________________
+ECHO  PRESS 1,2,3,4,5,6 or 7                               
+ECHO ________________________________________________________
+ECHO  1 - Install VCRedist,XNAframework,OpenAL and DirectX 
+ECHO  2 - Install XNAframework                             
+ECHO  3 - Install VCRedist                                 
+ECHO  4 - Install OpenAL                                   
+echo  5 - Install DirectX                                  
+echo  6 - View changelog                                   
+ech0  7 - Exit                                             
+echo ________________________________________________________
 ECHO.
 SET /P M=Type 1, 2, 3, 4 or 5 then press ENTER:
 IF %M%==1 GOTO all 
