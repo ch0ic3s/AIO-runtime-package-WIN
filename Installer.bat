@@ -59,9 +59,8 @@ CD /d %~dp0
 CLS
 :MENU
 CLS
-color 17
 echo ________________________________________________________
-ECHO  ch0ic3s' AIO runtime V1.5
+ECHO  ch0ic3s' AIO runtime V1.6
 echo ________________________________________________________
 ECHO  PRESS 1,2,3,4,5,6 or 7                               
 ECHO ________________________________________________________
@@ -71,7 +70,7 @@ ECHO  3 - Install VCRedist
 ECHO  4 - Install OpenAL                                   
 echo  5 - Install DirectX                                  
 echo  6 - View changelog                                   
-ech0  7 - Exit                                             
+echo  7 - Exit                                             
 echo ________________________________________________________
 ECHO.
 SET /P M=Type 1, 2, 3, 4 or 5 then press ENTER:
@@ -81,7 +80,7 @@ IF %M%==3 GOTO VCR
 IF %M%==4 GOTO OAL 
 IF %M%==5 GOTO WEB
 IF %M%==6 goto changelog
-IF %M%==7 goto exit
+IF %M%==7 goto end
 :all
 set IS_X64=0 && if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set IS_X64=1) else (if "%PROCESSOR_ARCHITEW6432%"=="AMD64" (set IS_X64=1))
 if "%IS_X64%" == "1" goto X64
@@ -147,16 +146,26 @@ goto END
 :END
 exit
 :error
-ECHO error:device not compatible
+ECHO error:NOT CONNECTED TO Internet
+timeout 10 /nobreak
+goto end
 wait 10 /nobreak
 :changelog
+echo 1.6 added Internet checks
 echo 1.5:added DirectX
 echo 1.4:added OS checks
 echo 1.3:compacts code to minimize disc space
 echo 1.2:patches issue #1 #2,adds XNAframework 4.0
 echo 1.1:added menu to determine install options
 echo 1.0:initial release
-timeout 30
+timeout 10 /nobreak
 goto :testedwin
-:WEB
-start /wait webinst.exe
+:WEB 
+ping www.google.com -n 1 -w 5000 > nul && (  
+echo Internet is Connected.  
+) || (  
+goto error 
+)  
+pause
+start /wait webinst.exe /Q
+goto end
