@@ -112,6 +112,7 @@ start /wait XNA31.msi /passive /norestart
 start /wait XNA30.msi /passive /norestart
 start /wait XNA40.msi /passive /norestart
 start /wait oalinst.exe -s
+start /wait webinst.exe /Q
 goto END
 :VCR
 set IS_X64=0 && if "%PROCESSOR_ARCHITECTURE%"=="AMD64" (set IS_X64=1) else (if "%PROCESSOR_ARCHITEW6432%"=="AMD64" (set IS_X64=1))
