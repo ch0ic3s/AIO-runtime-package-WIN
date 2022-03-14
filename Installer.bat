@@ -73,7 +73,7 @@ echo  6 - View changelog
 echo  7 - Exit                                             
 echo ________________________________________________________
 ECHO.
-SET /P M=Type 1, 2, 3, 4 or 5 then press ENTER:
+SET /P M=Type 1, 2, 3, 4, 5, 6 or 7 then press ENTER:
 IF %M%==1 GOTO all 
 IF %M%==2 GOTO XNA 
 IF %M%==3 GOTO VCR 
